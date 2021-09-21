@@ -1,9 +1,9 @@
-cmake_minimum_required(VERSION 2.8.3)
+cmake_minimum_required(VERSION 3.0.2)
 project(rviz_camera_stream)
 
 find_package(catkin REQUIRED COMPONENTS
-  roscpp
   image_transport
+  roscpp
   roslint
   rviz
   sensor_msgs
@@ -14,6 +14,7 @@ roslint_cpp()
 # if(CMAKE_COMPILER_IS_GNUCXX)
 #  set(CMAKE_CXX_FLAGS "-std=c++0x")  ## Enable C++11
 # endif()
+set(CMAKE_CXX_FLAGS "-Wall -Werror ${CMAKE_CXX_FLAGS}")
 
 ## This plugin includes Qt widgets, so we must include Qt.
 ## We'll use the version that rviz used so they are compatible.
@@ -34,6 +35,9 @@ endif()
 add_definitions(-DQT_NO_KEYWORDS)
 
 catkin_package(
+  CATKIN_DEPENDS
+  roscpp
+  rviz
 )
 
 include_directories(
@@ -42,27 +46,27 @@ include_directories(
 )
 
 if(rviz_QT_VERSION VERSION_LESS "5")
-qt4_wrap_cpp(MOC_FILES
-  include/rviz_camera_stream/camera_display.h
+  qt4_wrap_cpp(MOC_FILES
+    include/${PROJECT_NAME}/camera_display.h
   )
 else()
-qt5_wrap_cpp(MOC_FILES
-  include/rviz_camera_stream/camera_display.h
+  qt5_wrap_cpp(MOC_FILES
+    include/${PROJECT_NAME}/camera_display.h
   )
 endif()
 
-add_library(rviz_camera_stream
+add_library(${PROJECT_NAME}
   src/camera_display.cpp
   ${MOC_FILES}
 )
 
-target_link_libraries(rviz_camera_stream
+target_link_libraries(${PROJECT_NAME}
   ${catkin_LIBRARIES}
   ${QT_LIBRARIES}
 )
 
 # install
-install (TARGETS rviz_camera_stream
+install (TARGETS ${PROJECT_NAME}
   ARCHIVE DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   LIBRARY DESTINATION ${CATKIN_PACKAGE_LIB_DESTINATION}
   RUNTIME DESTINATION ${CATKIN_PACKAGE_BIN_DESTINATION}
