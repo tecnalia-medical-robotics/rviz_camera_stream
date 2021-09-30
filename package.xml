@@ -1,12 +1,11 @@
 <package>
   <name>rviz_camera_stream</name>
-  <version>0.0.1</version>
+  <version>1.0.0</version>
   <description>
-    Modified RViz camera plugin.
-    Allows to output the rviz display view as an Image topic.
+    Publish a camera view as rendered by rviz on an Image topic
   </description>
 
-  <maintainer email="lucasw_backwards@gmail.com">Lucas Walter</maintainer>
+  <maintainer email="wsacul@gmail.com">Lucas Walter</maintainer>
   <author email="tbd@tbd.com">Mikhail Medvedev</author>
 
   <license>BSD</license>
