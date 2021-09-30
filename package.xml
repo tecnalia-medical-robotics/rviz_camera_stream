@@ -1,6 +1,6 @@
 <package>
   <name>rviz_camera_stream</name>
-  <version>1.0.0</version>
+  <version>1.0.1</version>
   <description>
     Publish a camera view as rendered by rviz on an Image topic
   </description>
