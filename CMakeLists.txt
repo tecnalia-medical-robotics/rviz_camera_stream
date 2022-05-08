@@ -14,7 +14,8 @@ roslint_cpp()
 # if(CMAKE_COMPILER_IS_GNUCXX)
 #  set(CMAKE_CXX_FLAGS "-std=c++0x")  ## Enable C++11
 # endif()
-set(CMAKE_CXX_FLAGS "-Wall -Werror ${CMAKE_CXX_FLAGS}")
+# set(CMAKE_CXX_FLAGS "-Wall -Werror ${CMAKE_CXX_FLAGS}")
+set(CMAKE_CXX_FLAGS "-Wall ${CMAKE_CXX_FLAGS}")
 
 ## This plugin includes Qt widgets, so we must include Qt.
 ## We'll use the version that rviz used so they are compatible.
@@ -25,7 +26,8 @@ if(rviz_QT_VERSION VERSION_LESS "5")
   include(${QT_USE_FILE})
 else()
   message(STATUS "Using Qt5 based on the rviz_QT_VERSION: ${rviz_QT_VERSION}")
-  find_package(Qt5 ${rviz_QT_VERSION} EXACT REQUIRED Core Widgets)
+  # find_package(Qt5 ${rviz_QT_VERSION} EXACT REQUIRED Core Widgets)
+  find_package(Qt5 ${rviz_QT_VERSION} REQUIRED Core Widgets)
   ## make target_link_libraries(${QT_LIBRARIES}) pull in all required dependencies
   set(QT_LIBRARIES Qt5::Widgets)
 endif()
