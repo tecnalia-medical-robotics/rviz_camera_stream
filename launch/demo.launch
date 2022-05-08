@@ -5,6 +5,7 @@
   <!-- launch rviz with config/rviz_camera_stream.rviz -->
   <node pkg="rviz" type="rviz" name="rviz"
       args="-d $(find rviz_camera_stream)/config/rviz_camera_stream.rviz"
+      output="screen"
       if="$(arg use_rviz)" />
 
   <group ns="camera1">

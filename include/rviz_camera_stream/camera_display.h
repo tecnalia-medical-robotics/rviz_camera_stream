@@ -151,6 +151,8 @@ private:
 
   bool force_render_ = false;
 
+  static inline int count_ = 0;
+
   uint32_t vis_bit_;
 
   video_export::VideoPublisher* video_publisher_ = nullptr;

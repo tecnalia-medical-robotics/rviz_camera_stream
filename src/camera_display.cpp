@@ -283,16 +283,21 @@ void CameraPub::onInitialize()
 {
   Display::onInitialize();
 
+  count_++;
+
   video_publisher_ = new video_export::VideoPublisher();
 
   std::stringstream ss;
-  static int count = 0;
-  ss << "RvizCameraPubCamera" << count++;
+  ss << "RvizCameraPubCamera" << count_;
   camera_ = context_->getSceneManager()->createCamera(ss.str());
+
+  std::stringstream ss_tex;
+  ss_tex << "RttTexInit" << count_;
+  ROS_INFO_STREAM(ss_tex.str());
 
   // render to texture
   rtt_texture_ = Ogre::TextureManager::getSingleton().createManual(
-      "RttTex",
+      ss_tex.str(),
       Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
       Ogre::TEX_TYPE_2D,
       640, 480,
@@ -580,8 +585,12 @@ bool CameraPub::updateCamera()
   if ((info->width != render_texture_->getWidth()) ||
       (info->height != render_texture_->getHeight()))
   {
+    std::stringstream ss_tex;
+    ss_tex << "RttTex" << count_;
+    ROS_INFO_STREAM(ss_tex.str());
+
     rtt_texture_ = Ogre::TextureManager::getSingleton().createManual(
-        "RttTex",
+        ss_tex.str(),
         Ogre::ResourceGroupManager::DEFAULT_RESOURCE_GROUP_NAME,
         Ogre::TEX_TYPE_2D,
         info->width, info->height,
