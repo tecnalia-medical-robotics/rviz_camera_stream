@@ -46,6 +46,7 @@
 #include <OgreMaterialManager.h>
 #include <OgreRectangle2D.h>
 #include <OgreRenderSystem.h>
+#include <OgreRenderTexture.h>
 #include <OgreRenderWindow.h>
 #include <OgreSceneManager.h>
 #include <OgreSceneNode.h>
@@ -163,7 +164,7 @@ public:
 
     // 1.05 multiplier is to avoid crash when the window is resized.
     // There should be a better solution.
-    uchar *data = OGRE_ALLOC_T(uchar, datasize * 1.05, Ogre::MEMCATEGORY_RENDERSYS);
+    uchar *data = OGRE_ALLOC_T(uchar, static_cast<int>(datasize * 1.05), Ogre::MEMCATEGORY_RENDERSYS);
     Ogre::PixelBox pb(width, height, 1, pf, data);
     render_object->copyContentsToMemory(pb, Ogre::RenderTarget::FB_AUTO);
 
