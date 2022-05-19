@@ -53,7 +53,6 @@
 #include <OgreTechnique.h>
 #include <OgreTextureManager.h>
 #include <OgreViewport.h>
-#include <boost/bind.hpp>
 #include <image_transport/camera_common.h>
 #include <image_transport/image_transport.h>
 #include <sensor_msgs/image_encodings.h>
